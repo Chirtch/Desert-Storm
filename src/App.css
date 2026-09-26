@@ -1,0 +1,204 @@
+#root {
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  background: #111827;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.page {
+  text-align: center;
+  padding-top: 30px;
+}
+
+.game {
+  width: 600px;
+  height: 500px;
+  max-width: 90vw;
+
+  margin: 30px auto;
+
+  background-image: url("/Background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border: 3px solid white;
+  border-radius: 10px;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.player {
+  width: 60px;
+  height: 60px;
+
+  position: absolute;
+  bottom: 20px;
+
+  object-fit: contain;
+
+  transform: translateX(-50%);
+
+  user-select: none;
+  pointer-events: none;
+
+  will-change: left;
+
+  
+}.obstacle {
+  width: 50px;
+  height: 50px;
+
+  position: absolute;
+
+  object-fit: contain;
+
+  transform: translate(-50%, -50%);
+
+  user-select: none;
+  pointer-events: none;
+
+}.game-over {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.game-over h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.game-over p {
+  font-size: 24px;
+}
+
+.game-over button {
+  padding: 12px 24px;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.game-over button:hover {
+  transform: scale(1.05);
+}
+
+.flashing {
+  animation: flash 0.15s infinite;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.2;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+.game-over input {
+  width: 200px;
+  padding: 10px;
+  margin-bottom: 10px;
+
+  font-size: 16px;
+  text-align: center;
+
+  border: none;
+  border-radius: 6px;
+}
+
+.leaderboard {
+  width: 250px;
+  margin: 15px 0;
+  padding: 10px 20px;
+
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+.leaderboard h2 {
+  margin: 0 0 10px;
+}
+
+.leaderboard-entry {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 5px 0;
+  font-size: 18px;
+}
+.start-menu {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+}
+
+.start-menu h1 {
+  margin: 0;
+
+  font-size: 48px;
+  font-weight: bold;
+
+  color: white;
+}
+
+.start-menu p {
+  font-size: 18px;
+}
+
+.start-menu button {
+  padding: 15px 40px;
+
+  font-size: 22px;
+  font-weight: bold;
+
+  border: none;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.start-menu button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 5px 20px rgba(255, 255, 255, 0.25);
+}
+
+.start-menu .controls {
+  font-size: 14px;
+  opacity: 0.8;
+}
