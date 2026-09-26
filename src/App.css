@@ -202,3 +202,11 @@ body {
   font-size: 14px;
   opacity: 0.8;
 }
+
+.game > h1 {
+  color: white;
+}
+
+.game > p {
+  color: white;
+}
