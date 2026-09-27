@@ -141,15 +141,12 @@ useEffect(() => {
   const obstacleRect = obstacle.getBoundingClientRect();
 
   // Shrink player's hitbox to 70% of its visible size
-  const shrinkX = playerRect.width * 0.15;
-  const shrinkY = playerRect.height * 0.15;
-
-  const playerHitbox = {
-    left: playerRect.left + shrinkX,
-    right: playerRect.right - shrinkX,
-    top: playerRect.top + shrinkY,
-    bottom: playerRect.bottom - shrinkY,
-  };
+const playerHitbox = {
+  left: playerRect.left,
+  right: playerRect.right - 45,
+  top: playerRect.top,
+  bottom: playerRect.bottom,
+};
 
   return (
     playerHitbox.left < obstacleRect.right &&
@@ -457,6 +454,8 @@ const restartGame = () => {
     }}
   />
 )}
+
+
 
 {gameOver && (
   <div className="game-over">

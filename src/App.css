@@ -48,6 +48,7 @@ body {
   pointer-events: none;
 
   will-change: left;
+ 
 
   
 }.obstacle {
@@ -341,3 +342,4 @@ body {
   line-height: 1.2;
   margin-bottom: 30px;
 }
+
