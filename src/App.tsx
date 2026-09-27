@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
+import { supabase } from "./supabase";
 
 type Obstacle = {
   id: number;
@@ -231,45 +232,55 @@ if (isColliding(obstacle.id) && !isInvincible.current) {
     };
   }, [score, gameOver, gameStarted]);
 
-  const [playerName, setPlayerName] = useState("");
+ const [playerName, setPlayerName] = useState("");
 
-const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>(() => {
-  const savedScores = localStorage.getItem("dodgeGameLeaderboard");
-
-  if (savedScores) {
-    return JSON.parse(savedScores);
-  }
-
-  return [];
-});
+const [leaderboard, setLeaderboard] =
+  useState<LeaderboardEntry[]>([]);
 
 const [scoreSaved, setScoreSaved] = useState(false);
 
-const saveScore = () => {
-  const name = playerName.trim();
+const loadLeaderboard = async () => {
+  const { data, error } = await supabase
+    .from("Leaderboard")
+    .select("name, score")
+    .order("score", { ascending: false })
+    .limit(5);
 
-  if (!name || scoreSaved) {
+  if (error) {
+    console.error("Could not load leaderboard:", error);
     return;
   }
 
-  const newEntry: LeaderboardEntry = {
-    name: name,
-    score: score,
-  };
+  setLeaderboard(data ?? []);
+};
 
-  const newLeaderboard = [...leaderboard, newEntry]
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 5);
+useEffect(() => {
+  loadLeaderboard();
+}, []);
 
-  setLeaderboard(newLeaderboard);
+const saveScore = async () => {
+  const name = playerName.trim();
 
-  localStorage.setItem(
-    "dodgeGameLeaderboard",
-    JSON.stringify(newLeaderboard)
-  );
+  if (!name || scoreSaved) return;
+
+  const { error } = await supabase
+    .from("Leaderboard")
+    .insert({
+      name,
+      score,
+    });
+
+  if (error) {
+    console.error("Could not save score:", error);
+    return;
+  }
 
   setScoreSaved(true);
+
+  await loadLeaderboard();
 };
+
+
 
   // --------------------------------
   // RESTART GAME
@@ -364,18 +375,30 @@ const restartGame = () => {
 
       <div className="game">
         {!gameStarted && (
-  <div className="start-menu">
-    <h1>Desert Storm</h1>
+  <div className="home-page">
+    <div className="home-content">
+      <h1>DESERT STORM</h1>
 
-    <p>Dodge the falling bombs and survive!</p>
+      <p className="tagline">
+        Dodge. Survive. Beat your high score.
+      </p>
 
-    <button onClick={startGame}>
-      PLAY GAME
-    </button>
+      <button
+        className="play-button"
+        onClick={startGame}
+      >
+        PLAY GAME
+      </button>
 
-    <p className="controls">
-      A / D or ← / → to move
-    </p>
+      <div className="how-to-play">
+        <h2>HOW TO PLAY</h2>
+
+        <p>💣 Dodge the falling bombs</p>
+        <p>❤️ You have 3 lives</p>
+        <p>⌨️ Use A / D or ← / → to move</p>
+        <p>🏆 Survive to increase your score</p>
+      </div>
+    </div>
   </div>
 )}
   {gameStarted &&
@@ -435,7 +458,7 @@ const restartGame = () => {
       <p>Score saved!</p>
     )}
 
-    <div className="leaderboard">
+    <div className="Leaderboard">
       <h2>🏆 Leaderboard</h2>
 
       {leaderboard.length === 0 ? (
@@ -443,7 +466,7 @@ const restartGame = () => {
       ) : (
         leaderboard.map((entry, index) => (
           <div
-            className="leaderboard-entry"
+            className="Leaderboard-entry"
             key={`${entry.name}-${entry.score}-${index}`}
           >
             <span>
