@@ -7,7 +7,7 @@ function About() {
       <br />
 
       <p>I created Desert Storm as a Project to see what I can do with React and TypeScript.
-        As a beginner in web development, I wanted to challenge myself and learn more about these technologies.
+        As a beginner in web development, I wanted to challenge myself and learn more about Coding.
          I hope you enjoy playing the game and exploring the website!</p>
 
          <br />
