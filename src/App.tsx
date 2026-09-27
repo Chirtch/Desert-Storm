@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { supabase } from "./supabase";
+import { Routes, Route, Link } from "react-router-dom";
+import About from "./pages/about";
+import Leaderboard from "./pages/Leaderboard";
 
 type Obstacle = {
   id: number;
@@ -13,7 +16,7 @@ type LeaderboardEntry = {
   score: number;
 };
 
-function App() {
+function Game() {
   const [playerX, setPlayerX] = useState(50);
 const playerXRef = useRef(50);
 
@@ -509,6 +512,24 @@ const restartGame = () => {
 )}
       </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <nav className="navbar">
+        <Link to="/">Home</Link>
+        <Link to="/leaderboard">Leaderboard</Link>
+        <Link to="/about">About</Link>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Game />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </>
   );
 }
 
