@@ -3,7 +3,7 @@ import "./App.css";
 import { supabase } from "./supabase";
 import { Routes, Route, Link } from "react-router-dom";
 import About from "./pages/about";
-import Leaderboard from "./pages/leaderboard";
+import Leaderboard from "./pages/Leaderboard";
 
 type Obstacle = {
   id: number;
