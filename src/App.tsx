@@ -470,10 +470,9 @@ const restartGame = () => {
             key={`${entry.name}-${entry.score}-${index}`}
           >
             <span>
-              {index + 1}. {entry.name}
+              {index + 1}. {entry.name} {entry.score}
             </span>
 
-            <span>{entry.score}</span>
           </div>
         ))
       )}

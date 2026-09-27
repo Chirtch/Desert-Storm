@@ -148,6 +148,7 @@ body {
 
   padding: 5px 0;
   font-size: 18px;
+  gap: 5px;
 }
 .start-menu {
   position: absolute;
