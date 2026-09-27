@@ -336,6 +336,30 @@ const saveScore = async () => {
   setGameStarted(true);
 };
 const restartGame = () => {
+
+  if (!startSoundRef.current) {
+    startSoundRef.current = new Audio("/Start.mp3");
+    startSoundRef.current.volume = 0.7;
+  }
+
+  startSoundRef.current.currentTime = 0;
+
+  startSoundRef.current.play().catch((error) => {
+    console.error("Start sound could not play:", error);
+  });
+
+  // Background music
+  if (!musicRef.current) {
+    musicRef.current = new Audio("/music.mp3");
+    musicRef.current.loop = true;
+    musicRef.current.volume = 0.3;
+  }
+
+  musicRef.current.currentTime = 0;
+
+  musicRef.current.play().catch((error) => {
+    console.error("Music could not play:", error);
+  });
   keysPressed.current.left = false;
   keysPressed.current.right = false;
 
