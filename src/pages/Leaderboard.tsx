@@ -32,7 +32,8 @@ function Leaderboard() {
 
   return (
     <div className="leaderboard-page">
-      <h1>Desert Storm Leaderboard</h1>
+      <h1>Desert Storm</h1>
+      <h2>Leaderboard</h2>
 
       {loading ? (
         <p>Loading scores...</p>

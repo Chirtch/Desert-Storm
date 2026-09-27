@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  background: #111827;
+  background: #200149;
   color: white;
   font-family: Arial, sans-serif;
 }
@@ -148,7 +148,7 @@ body {
 
   padding: 5px 0;
   font-size: 18px;
-  gap: 5px;
+  gap: 30px;
 }
 .start-menu {
   position: absolute;
@@ -294,7 +294,6 @@ body {
   margin: 7px 0;
   color: white;
 }
-
 .navbar {
   width: 100%;
   display: flex;
@@ -315,4 +314,30 @@ body {
 
 .navbar a:hover {
   text-decoration: underline;
+}
+
+.leaderboard-page {
+  width: 500px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.leaderboard-list {
+  width: 300px;
+  margin: 20px auto;
+}
+
+.leaderboard-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 8px 15px;
+  font-size: 18px;
+}
+
+.leaderboard-page h1 {
+  font-size: 48px;
+  line-height: 1.2;
+  margin-bottom: 30px;
 }
